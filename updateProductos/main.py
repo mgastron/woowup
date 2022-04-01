@@ -28,8 +28,6 @@ for url_sku in (url):
         'Authorization': 'Basic ' + api_key
     }
     #Hago el request
-    print(headers)
-    print(url_sku)
     response = requests.request("PUT", url_sku, headers=headers, data=payload)
     print(response.text)
     print('El sku ', sku[i], ' se ha actualizado correctamente, su sku encode es: ', encode(sku[i]))

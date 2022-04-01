@@ -16,7 +16,6 @@ def get_products(api_key):
     while i == 0:
 
         url = "https://api.woowup.com/apiv3/products?page=" + str(page) + '&limit=' + str(limit) + "&with_stock=1"
-        print(url)
         payload = {}
         headers = {
             'Accept': 'application/json',
