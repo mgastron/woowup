@@ -2,20 +2,20 @@ import requests
 import json
 import time
 
-# Traigo todos los productos de WoowUp con STOCK 0
+# Traigo todas las de WoowUp
 
 # Inicializo la pagina y limite
 
-def get_products(api_key):
+def get_branches(api_key):
     page = 0
     limit = 100
 
     i = 0
-    list_sku = []
+    list_id = []
     # Recorro Request de todos los productos con stock
     while i == 0:
 
-        url = "https://api.woowup.com/apiv3/products?page=" + str(page) + '&limit=' + str(limit) + "&with_stock=1"
+        url = "https://api.woowup.com/apiv3/branches/?page=" + str(page) + '&limit=' + str(limit)
         payload = {}
         headers = {
             'Accept': 'application/json',
@@ -30,14 +30,15 @@ def get_products(api_key):
 
         try:
             for n in range(limit):     # Recorro la respuesta y me guardo el listado de sku
-                sku = str(response['payload'][n]['sku'])
-                list_sku.append(sku) #Agrego los sku a una lista
+                id = str(response['payload'][n]['id'])
+                list_id.append(id) #Agrego los sku a una lista
             print('Estamos en la página: ', page)
             page += 1 # cambio de página
         except: #finalizo el procesamiento cuando obtenemos no obtengo más resultados.
-            print('finalizó get de productos')
+            print('finalizó get de tiendas')
             i = 0
             break
         # print(response)
-    return list_sku
+    #print(list_id)
+    return list_id
 
